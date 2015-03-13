@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="br.com.advg.app" version="1.0.0">
-     <name>Biblioteca de icones Material! </name>
+    <name>Biblioteca de icones Material! </name>
 
     <description>
         Essa aplicação é apenas um modelo utilizando bibliotecas remotamente! 
@@ -15,12 +15,17 @@
     <access origin="*"/>
 
     <icon src="res/ic_launcher.png" />
-
+    <splash src="res/launcher.png" density="land-hdpi"/>
+    
     <platform name="android">
-              <icon src="res/drawable-hdpi/ic_launcher.png" density="ldpi" />
-              <icon src="res/drawable-mdpi/ic_launcher.png" density="mdpi" />
-              <icon src="res/drawable-xhdpi/ic_launcher.png" density="hdpi" />
-              <icon src="res/drawable-xxhdpi/ic_launcher.png" density="xhdpi" />
-     </platform>
-
+        <icon src="res/drawable-hdpi/ic_launcher.png" density="ldpi" />
+        <icon src="res/drawable-mdpi/ic_launcher.png" density="mdpi" />
+        <icon src="res/drawable-xhdpi/ic_launcher.png" density="hdpi" />
+        <icon src="res/drawable-xxhdpi/ic_launcher.png" density="xhdpi" />
+   
+        <!-- you can use any density that exists in the Android project -->
+        <splash src="res/launcher.png" density="land-hdpi"/>
+    </platform>
 </widget>
+
+    
