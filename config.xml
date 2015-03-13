@@ -26,6 +26,10 @@
         <!-- you can use any density that exists in the Android project -->
         <splash src="res/launcher.png" density="land-hdpi"/>
     </platform>
+    
+    
+    <preference name="permissions" value="none"/>
+    
 </widget>
 
     
