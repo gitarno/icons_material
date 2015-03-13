@@ -8,11 +8,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-war');
 
     // Project configuration.
     grunt.initConfig({
-        clean: ['tmp', 'dist', 'war'],
+        clean: ['tmp', 'dist'],
         bower: {
             dev: {
                 dest: 'dist/libs',
@@ -24,7 +23,7 @@ module.exports = function (grunt) {
         copy: {
             dist: {
                 files: [
-                     {
+                    {
                         expand: true,
                         cwd: 'tmp/appjs',
                         src: ['**/*.js'],
@@ -36,7 +35,7 @@ module.exports = function (grunt) {
         concat: {
             appjs: {
                 src: ['src/assets/js/*.js'],
-                dest: 'tmp/appjs/*.js'
+                dest: 'tmp/appjs/app.js'
             }
         },
         htmlmin: {
@@ -46,7 +45,11 @@ module.exports = function (grunt) {
                     collapseWhitespace: true
                 },
                 files: [
-                    {expand: true, cwd: 'src', src: ['**/*.html'], dest: 'dist'}
+                    {
+                        expand: true,
+                        cwd: 'src',
+                        src: ['**/*.html'],
+                        dest: 'dist'}
                 ]
             }
         },
@@ -54,7 +57,8 @@ module.exports = function (grunt) {
             build: {
                 files: [
                     {
-                        expand: true, cwd: 'src/assets/css',
+                        expand: true,
+                        cwd: 'src/assets/css',
                         src: ['*.css'],
                         dest: 'dist/assets/css',
                         ext: '.css'}
@@ -82,14 +86,13 @@ module.exports = function (grunt) {
         uglify: {
             dist: {
                 options: {
-
                     compress: false,
                     beautiful: true
                 },
                 files: [
                     {
                         expand: true,
-                        cwd: 'src/assets/js',
+                        cwd: 'tmp/appjs/',
                         src: ['**/*.js'],
                         dest: 'dist/assets/js'
                     }
@@ -117,7 +120,7 @@ module.exports = function (grunt) {
             },
             js: {
                 files: "src/**/*.js",
-                tasks: ["uglify"]
+                tasks: ["concat","uglify"]
             },
             css: {
                 files: "src/**/*.css",
@@ -127,29 +130,10 @@ module.exports = function (grunt) {
                 files: "src/**/*.less",
                 tasks: ["less"]
             }
-        },
-        war: {
-            target: {
-                options: {
-                    war_dist_folder: 'war',
-                    war_name: 'app-icon-material',
-                    webxml_webapp_version: '2.5',
-                    webxml_webapp_xmlns: 'http://java.sun.com/xml/ns/javaee',
-                    webxml_webapp_xmlns_xsi: 'http://www.w3.org/2001/XMLSchema-instance',
-                    webxml_webapp_xsi_schema_location: 'http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd'
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'dist',
-                        src: ['**'],
-                        dest: ''
-                    }
-                ]
-            }
         }
+
     });
 
-    grunt.registerTask('build', ['bower', 'uglify', 'less', 'htmlmin', 'connect', 'watch']);
+    grunt.registerTask('build', ['bower', 'concat','uglify', 'less', 'htmlmin', 'connect', 'watch']);
     grunt.registerTask('default', ['build']);
 };

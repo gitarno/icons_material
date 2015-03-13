@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "dependencies": {
         "angular": "latest",
+        "bootstrap": "latest",
         "bootstrap-material-design": "latest"
     }
 }
